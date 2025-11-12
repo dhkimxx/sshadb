@@ -65,10 +65,10 @@ from sshadb import SSHAdb
 client = SSHAdb(
     host="192.168.0.10",
     user="ubuntu",
-    key_path="~/.ssh/id_rsa",  # 또는 password="..."
-    port=22,                    # 기본값 22
-    timeout=10.0,               # 초 단위
-    adb_path="adb",            # 원격의 adb 경로/이름
+    key_path="~/.ssh/id_rsa",       # 또는 password="..."
+    port=22,                        # 기본값 22
+    timeout=10.0,                   # 초 단위
+    adb_path="/usr/local/bin/adb",  # 원격의 adb 경로/이름
 )
 devices = client.devices()
 state = client.get_state("SERIAL")
