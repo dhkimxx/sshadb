@@ -33,13 +33,11 @@ jobs:
         run: |
           ruff --version
           ruff check .
-        continue-on-error: true
 
       - name: Type check (mypy)
         run: |
           mypy --version
           mypy src
-        continue-on-error: true
 
       - name: Temporarily disable tests
         run: |
