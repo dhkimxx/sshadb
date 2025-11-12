@@ -34,21 +34,23 @@ class SSHClientWrapper:
         try:
             client = paramiko.SSHClient()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            connect_kwargs = {
-                "hostname": self._config.host,
-                "username": self._config.user,
-                "port": self._config.port,
-                "timeout": self._config.timeout,
-                "allow_agent": True,
-                "look_for_keys": True,
-                "compress": True,
-            }
-            if self._config.key_path:
-                key_path = os.path.expanduser(self._config.key_path)
-                connect_kwargs["key_filename"] = key_path
-            if self._config.password:
-                connect_kwargs["password"] = self._config.password
-            client.connect(**connect_kwargs)
+            key_filename = (
+                os.path.expanduser(self._config.key_path)
+                if self._config.key_path
+                else None
+            )
+            password = self._config.password
+            client.connect(
+                hostname=self._config.host,
+                username=self._config.user,
+                port=self._config.port,
+                timeout=self._config.timeout,
+                allow_agent=True,
+                look_for_keys=True,
+                compress=True,
+                key_filename=key_filename,
+                password=password,
+            )
             self._client = client
         except paramiko.AuthenticationException as e:
             raise SSHAuthenticationError("SSH authentication failed") from e
