@@ -1,5 +1,25 @@
+# Python version management
 .python-version
+
+# Environment directories
 .env
-.venv
-__pycache__
-.pytest_cache
+.venv/
+
+# Python cache and pytest cache
+__pycache__/
+.py[cod]
+.pytest_cache/
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+*.egg
+
+# IDE/editor configs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
