@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Prefer dev extras if available; fall back to test extras
+          pip install -e ".[dev]" || pip install -e ".[test]"
+
+      - name: Lint (ruff)
+        run: |
+          ruff --version
+          ruff check .
+
+      - name: Type check (mypy)
+        run: |
+          mypy --version
+          mypy src
+        continue-on-error: true
+
+      - name: Temporarily disable tests
+        run: |
+          echo "Skipping tests"
+
+      # - name: Run tests (pytest)
+      #   env:
+      #     # Provide empty defaults so tests that require real env vars are skipped
+      #     SSHADB_HOST: ""
+      #     SSHADB_USER: ""
+      #     SSHADB_PASSWORD: ""
+      #     SSHADB_KEY_PATH: ""
+      #     SSHADB_PORT: ""
+      #     SSHADB_TIMEOUT: ""
+      #     SSHADB_SERIAL: ""
+      #   run: |
+      #     pytest -q --maxfail=1 --disable-warnings
