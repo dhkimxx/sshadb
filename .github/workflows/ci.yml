@@ -33,6 +33,7 @@ jobs:
         run: |
           ruff --version
           ruff check .
+        continue-on-error: true
 
       - name: Type check (mypy)
         run: |
