@@ -7,7 +7,7 @@ from ..exceptions import ParseError
 
 def parse_adb_devices(output: str) -> List[Dict[str, str]]:
     try:
-        lines = [l.rstrip() for l in output.splitlines()]
+        lines = [line.rstrip() for line in output.splitlines()]
         devices: List[Dict[str, str]] = []
         seen_header = False
         for raw in lines:

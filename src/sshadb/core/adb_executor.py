@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import shlex
-from typing import List, Optional
+from typing import List
 
 from ..exceptions import CommandExecutionError
 from .ssh_client import SSHClientWrapper

@@ -5,7 +5,7 @@ import posixpath
 import uuid
 from pathlib import Path
 
-from ..exceptions import CommandExecutionError, FileTransferError
+from ..exceptions import FileTransferError
 from .adb_executor import AdbExecutor
 from .ssh_client import SSHClientWrapper
 
