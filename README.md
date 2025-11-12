@@ -7,6 +7,7 @@ Run Android ADB over SSH on a remote host with a simple Python API.
 sshadb는 로컬 PC에서 SSH로 원격 서버에 접속해, 원격 서버에서 ADB 명령을 실행하고 그 결과를 로컬 Python API로 다룰 수 있게 해주는 경량 유틸리티 라이브러리입니다.
 
 주요 기능:
+
 - 원격 `adb devices` 목록 조회
 - 특정 단말 대상 `adb shell` 실행
 - 파일 전송: 로컬 → 원격 → 단말(`adb push`), 단말 → 원격 → 로컬(`adb pull`)
@@ -56,7 +57,7 @@ client.close()
 
 두 가지 방식으로 사용할 수 있습니다.
 
-1) 인스턴스 방식
+1. 인스턴스 방식
 
 ```python
 from sshadb import SSHAdb
@@ -77,7 +78,7 @@ client.pull("SERIAL", "/data/local/tmp/remote.txt", "./downloaded.txt")
 client.close()
 ```
 
-2) 전역 구성 + 편의 함수
+2. 전역 구성 + 편의 함수
 
 ```python
 import sshadb
@@ -91,6 +92,7 @@ print(sshadb.shell("SERIAL", "echo hello"))
 ### API 개요
 
 - 클래스: `sshadb.SSHAdb`
+
   - `devices() -> list[dict]`
   - `get_state(serial: str) -> str`
   - `shell(serial: str, command: str) -> str`
@@ -104,10 +106,12 @@ print(sshadb.shell("SERIAL", "echo hello"))
 ## Configuration
 
 인증:
+
 - 비밀번호 기반: `password="..."`
 - 키 기반: `key_path="~/.ssh/id_rsa"`
 
 연결/실행 옵션:
+
 - `port`: SSH 포트(기본 22)
 - `timeout`: SSH 연결 타임아웃(초)
 - `adb_path`: 원격 ADB 바이너리 경로 또는 이름(기본 `adb`)
@@ -156,3 +160,5 @@ MIT License. 자세한 내용은 [LICENSE](LICENSE) 파일을 참고하세요.
 ## Links
 
 - Homepage: https://github.com/dhkimxx/sshadb
+- Repository: https://github.com/dhkimxx/sshadb
+- PyPI: https://pypi.org/project/sshadb

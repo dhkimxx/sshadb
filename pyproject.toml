@@ -23,6 +23,9 @@ classifiers = [
   "Typing :: Typed",
 ]
 keywords = ["adb", "android", "ssh", "remote", "paramiko"]
+authors = [
+  { name = "dhkimxx" }
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
@@ -35,6 +38,11 @@ sshadb = ["py.typed"]
 
 [project.urls]
 Homepage = "https://github.com/dhkimxx/sshadb"
+Repository = "https://github.com/dhkimxx/sshadb"
+Issues = "https://github.com/dhkimxx/sshadb/issues"
+Documentation = "https://github.com/dhkimxx/sshadb#readme"
+Changelog = "https://github.com/dhkimxx/sshadb/blob/main/docs/changelog.md"
+PyPI = "https://pypi.org/project/sshadb"
 
 [project.optional-dependencies]
 test = [
